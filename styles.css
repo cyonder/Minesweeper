@@ -1,3 +1,8 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 html, body{
   height: 100%;
   background: lightblue;
@@ -47,24 +52,26 @@ html, body{
 .field::after{
   content: "";
   display: block;
-  background-color: #FDD805;
   width: 100%;
   height: 100%;
 }
 
 .field::after,
 .field:hover::before{
-  background-color: #FDD805;
+  background-image: url(./images/tile.jpg);
+  background-size: 100%;
 }
 
-.field.found-mine::after,
-.field.found-mine:hover::before{
-  background-color: red;
+.field.mine-field::after,
+.field.mine-field:hover::before{
+  background-image: url(./images/tile-yellow-flag.jpg);
+  background-size: 100%;
 }
 
 .field.clean-field::after,
 .field.clean-field:hover::before{
-  background-color: green;
+  background-image: url(./images/tile-number.jpg);
+  background-size: 100%;
 }
 
 .field:hover{
@@ -79,4 +86,49 @@ html, body{
   z-index: 2;
   width: calc(100% + 9px);
   height: calc(100% + 9px);
+}
+
+.total-mine{
+  position: absolute;
+  font-size: 4vh;
+  font-family: helvetica;
+  font-weight: bold;
+  text-align: center;
+  width: calc(100% - 4.5px);
+}
+
+.total-mine[mines="0"] {
+  color: transparent;
+}
+
+.total-mine[mines="1"] {
+  color: blue;
+}
+
+.total-mine[mines="2"] {
+  color: green;
+}
+
+.total-mine[mines="3"] {
+  color: red;
+}
+
+.total-mine[mines="4"] {
+  color: darkmagenta;
+}
+
+.total-mine[mines="5"] {
+  color: magenta;
+}
+
+.total-mine[mines="6"] {
+  color: darkblue;
+}
+
+.total-mine[mines="7"] {
+  color: lightseagreen;
+}
+
+.total-mine[mines="8"] {
+  color: black;
 }

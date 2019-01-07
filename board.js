@@ -1,8 +1,9 @@
-function Board(element, cols, rows){
+function Board(element, cols, rows, totalMines){
   this.element = element;
   this.grid;
   this.cols = cols;
   this.rows = rows;
+  this.totalMines = totalMines;
 
   this.drawBoard = function(){
     this.grid = make2DArray();
@@ -18,10 +19,22 @@ function Board(element, cols, rows){
         field.setAttribute('row', j);
 
         this.grid[i][j] = new Field(field, i, j);
-        // this.grid[i][j].show();
         col.appendChild(this.grid[i][j].element);
       }
       this.element.appendChild(col);
+    }
+  }
+
+  this.plantMines = function(){    
+    for(var n = 0; n < this.totalMines; n++){      
+        var i = Math.floor(Math.random() * this.cols);
+        var j = Math.floor(Math.random() * this.rows); 
+        // If this field is not planted, plant mine.
+        if(!this.grid[i][j].isMine){
+          this.grid[i][j].isMine = true; 
+        }else{
+          n--;
+        }
     }
   }
 
@@ -36,4 +49,15 @@ function Board(element, cols, rows){
 
 Board.prototype.create = function(){
   this.drawBoard();
+  this.plantMines();
+  // this.displayAll();
 }
+
+Board.prototype.displayAll = function(){
+  for(var i = 0; i < this.cols; i++){
+    for(var j = 0; j < this.rows; j++){      
+      this.grid[i][j].show(this.grid);
+    }
+  }
+}
+

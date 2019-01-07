@@ -5,7 +5,7 @@ window.onload = function(){
   el.classList.add('board');
   game.appendChild(el);
   
-  var board = new Board(el, 16, 16);
+  var board = new Board(el, 16, 16, 51);
   board.create(); 
   
   // Listen for click events on the field elements
@@ -16,7 +16,7 @@ window.onload = function(){
         var row = e.target.getAttribute('row');
         
         board.grid[col][row].isRevealed = true;
-        board.grid[col][row].show();
+        board.grid[col][row].show(board.grid);
       })
     }
   }
